@@ -8,6 +8,7 @@ namespace SummerSchool
 {
     class Program
     {
+        //
         static string[] Students = new string[15];
 
         static int DisplayMenu()
