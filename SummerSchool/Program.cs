@@ -8,7 +8,6 @@ namespace SummerSchool
 {
     class Program
     {
-        //
         static string[] Students = new string[15];
 
         static int DisplayMenu()
@@ -30,7 +29,19 @@ namespace SummerSchool
 
         static void EnrollStudents()
         {
-            Console.WriteLine("Enroll here");
+            string[] studentEnrollment = new string[5];
+            Console.WriteLine("Enroll students here!");
+            Console.WriteLine(" ");
+            for (int i = 0; i < 15; i++)
+            {
+                Console.WriteLine("Please enter your name");
+                studentEnrollment[i] = Console.ReadLine();
+            }
+            Console.WriteLine("Great! Here's what I read:");
+            for (int i = 0; i < 15; i++)
+            {
+                Console.WriteLine(studentEnrollment[i]);
+            }
         }
 
         static void UnenrollStudents()
@@ -40,7 +51,7 @@ namespace SummerSchool
 
         static void ListStudents()
         {
-            Console.WriteLine("Print list of enrolled students here");
+            Console.WriteLine("Print the list of enrolled students here");
         }
 
         static void Main(string[] args)
@@ -54,23 +65,26 @@ namespace SummerSchool
                     EnrollStudents();
 
                 }
-                if (menuChoice == 2)
+               else if (menuChoice == 2)
                 {
                     UnenrollStudents();
                 }
-                if (menuChoice == 3)
+               else if (menuChoice == 3)
                 {
                     ListStudents();
                 }
-                if (menuChoice == 4)
+               else if (menuChoice == 4)
                 {
                     break;
                 }
-                //
+                else
+                {
+                    Console.WriteLine("Please choose from the options below");
+                }
                 Console.ReadKey();
 
             }
-                                    
-       }
+
+        }
     }
 }
