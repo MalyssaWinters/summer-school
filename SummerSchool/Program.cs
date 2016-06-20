@@ -37,6 +37,7 @@ namespace SummerSchool
             }
             return -1;
         }
+
         static void EnrollStudents()
         {
             Console.WriteLine(" ");
@@ -49,17 +50,25 @@ namespace SummerSchool
 
         static void UnenrollStudents()
         {
-            Console.WriteLine("Unenroll here");
+            Console.WriteLine(" ");
+            Console.WriteLine("Enter student number to unenroll");
+            ListStudents();
+            int studentNumber = Convert.ToInt32(Console.ReadLine());
+            int studentMinusOne = studentNumber - 1;
+            Console.WriteLine(Students[studentMinusOne] + " has been unenrolled");
+            Console.WriteLine("Press enter to continue");
+            Students[studentMinusOne] = null;
         }
+
         static void ListStudents()
         {
-            Console.WriteLine("List of enrolled students");
             Console.WriteLine(" ");
             for (int i = 0; i < Students.Length; i++)
             {
-                Console.WriteLine(i + 1 + ". " + Students[i]);
+            Console.WriteLine(i + 1 + ". " + Students[i]);
             }
         }
+
         static void Main(string[] args)
         {
             int menuChoice = 0;
@@ -69,7 +78,6 @@ namespace SummerSchool
                 if (menuChoice == 1)
                 {
                     EnrollStudents();
-
                 }
                 else if (menuChoice == 2)
                 {
@@ -88,7 +96,7 @@ namespace SummerSchool
                     Console.WriteLine("Invalid entry. Choose options 1-4.");
                     Console.WriteLine("Press enter to continue.");
                 }
-               Console.ReadKey();
+                Console.ReadKey();
 
             }
 
