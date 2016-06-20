@@ -39,11 +39,10 @@ namespace SummerSchool
         }
         static void EnrollStudents()
         {
-            Console.WriteLine("Enroll students here!");
             Console.WriteLine(" ");
-            Console.WriteLine("Please enter your name");
-            Console.WriteLine("");
+            Console.WriteLine("Please enter student name");
             string newStudent = Console.ReadLine();
+            Console.WriteLine("Press enter to continue");
             int spot = GetNextAvailableSpot();
             Students[spot] = newStudent;
         }
@@ -51,19 +50,16 @@ namespace SummerSchool
         static void UnenrollStudents()
         {
             Console.WriteLine("Unenroll here");
-
         }
-
         static void ListStudents()
         {
-            Console.WriteLine("Print the list of enrolled students here");
+            Console.WriteLine("List of enrolled students");
             Console.WriteLine(" ");
             for (int i = 0; i < Students.Length; i++)
             {
-                Console.WriteLine(Students[i]);
+                Console.WriteLine(i + 1 + ". " + Students[i]);
             }
         }
-
         static void Main(string[] args)
         {
             int menuChoice = 0;
@@ -89,10 +85,10 @@ namespace SummerSchool
                 }
                 else
                 {
-                    Console.WriteLine("Please choose from the options below");
-                    Console.WriteLine(" ");
+                    Console.WriteLine("Invalid entry. Choose options 1-4.");
+                    Console.WriteLine("Press enter to continue.");
                 }
-                Console.ReadKey();
+               Console.ReadKey();
 
             }
 
