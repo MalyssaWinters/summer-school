@@ -59,8 +59,7 @@ namespace SummerSchool
             Console.WriteLine("Please enter student name");
             string newStudent = Console.ReadLine();
             int spot = GetNextAvailableSpot();
-
-
+            
             //Students with the last name Malfoy are not to be admitted.
             //If someone tries to enroll a Malfoy, print out an error message and do not add the student to the list.
             if (newStudent.ToLower() == "malfoy")
@@ -108,9 +107,14 @@ namespace SummerSchool
                     Console.WriteLine("Press enter to continue");
                 }
             }
+            /*Students with a last name that starts with the same letter as their first name receive a 10% discount.
+            else if (FirstInitial = LastInitial)
+            {
+            put code here
+            }
+            */
             else
             {
-
                 Students[spot] = newStudent;
                 StudentCost[spot] = cost;
                 Console.WriteLine(Students[spot] + " is now enrolled and will need to pay £" + cost);
