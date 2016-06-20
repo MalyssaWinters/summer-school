@@ -8,6 +8,7 @@ namespace SummerSchool
 {
     class Program
     {
+        static double[] StudentCost = new double[15];
         static string[] Students = new string[15];
 
         static int DisplayMenu()
@@ -40,11 +41,13 @@ namespace SummerSchool
 
         static void EnrollStudents()
         {
+            double cost = 200;
             Console.WriteLine(" ");
             Console.WriteLine("Please enter student name");
             string newStudent = Console.ReadLine();
             int spot = GetNextAvailableSpot();
             Students[spot] = newStudent;
+            StudentCost[spot] = cost;
             Console.WriteLine(Students[spot] + " is now enrolled and will need to pay £200");
             Console.WriteLine("Press enter to continue");
         }
@@ -66,7 +69,7 @@ namespace SummerSchool
             Console.WriteLine(" ");
             for (int i = 0; i < Students.Length; i++)
             {
-            Console.WriteLine(i + 1 + ". " + Students[i]);
+            Console.WriteLine(i + 1 + ". " + Students[i] + " £" + StudentCost[i]);
             }
         }
 
