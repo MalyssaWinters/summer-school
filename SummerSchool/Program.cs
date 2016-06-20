@@ -71,7 +71,7 @@ namespace SummerSchool
             else if (newStudent.ToLower() == "potter")
             {
                 Students[spot] = newStudent;
-                StudentCost[spot] = cost;
+                StudentCost[spot] = cost / 2;
                 Console.WriteLine(Students[spot] + " is now enrolled and will need to pay £" + cost / 2);
                 Console.WriteLine("Press enter to continue");
             }
@@ -94,15 +94,18 @@ namespace SummerSchool
             //Longbottom to be admitted free of charge if less than 10 students are enrolled.
             else if (newStudent.ToLower() == "longbottom")
             {
-                Students[spot] = newStudent;
-                StudentCost[spot] = cost;
+                
                 if (CountStudents() < 10)
                 {
+                    Students[spot] = newStudent;
+                    StudentCost[spot] = 0 % cost;
                     Console.WriteLine(Students[spot] + " is now enrolled and will need to pay £" + 0 % cost);
                     Console.WriteLine("Press enter to continue");
                 }
                 else
                 {
+                    Students[spot] = newStudent;
+                    StudentCost[spot] = cost;
                     Console.WriteLine(Students[spot] + " is now enrolled and will need to pay £" + cost);
                     Console.WriteLine("Press enter to continue");
                 }
