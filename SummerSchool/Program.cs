@@ -43,9 +43,10 @@ namespace SummerSchool
             Console.WriteLine(" ");
             Console.WriteLine("Please enter student name");
             string newStudent = Console.ReadLine();
-            Console.WriteLine("Press enter to continue");
             int spot = GetNextAvailableSpot();
             Students[spot] = newStudent;
+            Console.WriteLine(Students[spot] + " is now enrolled and will need to pay £200");
+            Console.WriteLine("Press enter to continue");
         }
 
         static void UnenrollStudents()
