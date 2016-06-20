@@ -39,26 +39,13 @@ namespace SummerSchool
         }
         static void EnrollStudents()
         {
-            string[] studentEnrollment = new string[15];
-            //put student in next available spot
-            //to find next available spot, create method 
-            //loop over spots until we see null
             Console.WriteLine("Enroll students here!");
             Console.WriteLine(" ");
-            for (int i = 0; i < 15; i++)
-            {
-                Console.WriteLine("Please enter your name");
-                studentEnrollment[i] = Console.ReadLine();
-                int spot = GetNextAvailableSpot();
-
-                Students[spot] = studentEnrollment[i];
-            }
-            Console.WriteLine(" ");
-            Console.WriteLine("Class list:");
-            for (int i = 0; i < 15; i++)
-            {
-                Console.WriteLine(studentEnrollment[i]);
-            }
+            Console.WriteLine("Please enter your name");
+            Console.WriteLine("");
+            string newStudent = Console.ReadLine();
+            int spot = GetNextAvailableSpot();
+            Students[spot] = newStudent;
         }
 
         static void UnenrollStudents()
