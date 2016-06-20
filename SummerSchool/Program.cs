@@ -26,16 +26,32 @@ namespace SummerSchool
             menuChoice = Convert.ToInt32(Console.ReadLine());
             return menuChoice;
         }
-
+        static int GetNextAvailbleSpot()
+        {
+            for (int i = 0; i < Students.Length; i++)
+            {
+                if (Students[i] == null)
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
         static void EnrollStudents()
         {
             string[] studentEnrollment = new string[5];
+            //put student in next available spot
+            //to find next available spot, create method 
+            //loop over spots until we see null
             Console.WriteLine("Enroll students here!");
             Console.WriteLine(" ");
             for (int i = 0; i < 15; i++)
             {
                 Console.WriteLine("Please enter your name");
                 studentEnrollment[i] = Console.ReadLine();
+                int spot = GetNextAvailableSpot();
+
+                Students[spot] = studentEnrollment;
             }
             Console.WriteLine("Great! Here's what I read:");
             for (int i = 0; i < 15; i++)
@@ -47,11 +63,17 @@ namespace SummerSchool
         static void UnenrollStudents()
         {
             Console.WriteLine("Unenroll here");
+
         }
 
         static void ListStudents()
         {
             Console.WriteLine("Print the list of enrolled students here");
+            Console.WriteLine(" ");
+            for (int i = 0; i < Students.Length; i++)
+            {
+                Console.WriteLine(Students[i]);
+            }
         }
 
         static void Main(string[] args)
@@ -65,21 +87,22 @@ namespace SummerSchool
                     EnrollStudents();
 
                 }
-               else if (menuChoice == 2)
+                else if (menuChoice == 2)
                 {
                     UnenrollStudents();
                 }
-               else if (menuChoice == 3)
+                else if (menuChoice == 3)
                 {
                     ListStudents();
                 }
-               else if (menuChoice == 4)
+                else if (menuChoice == 4)
                 {
                     break;
                 }
                 else
                 {
                     Console.WriteLine("Please choose from the options below");
+                    Console.WriteLine(" ");
                 }
                 Console.ReadKey();
 
