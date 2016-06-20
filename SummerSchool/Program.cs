@@ -46,10 +46,41 @@ namespace SummerSchool
             Console.WriteLine("Please enter student name");
             string newStudent = Console.ReadLine();
             int spot = GetNextAvailableSpot();
-            Students[spot] = newStudent;
-            StudentCost[spot] = cost;
-            Console.WriteLine(Students[spot] + " is now enrolled and will need to pay £200");
-            Console.WriteLine("Press enter to continue");
+            if (newStudent.ToLower() == "malfoy")
+            {
+                Console.WriteLine("This student may not be admitted");
+                Console.WriteLine("Press enter for main menu");
+            }
+            else if (newStudent.ToLower() == "potter")
+            {
+                Students[spot] = newStudent;
+                StudentCost[spot] = cost;
+                Console.WriteLine(Students[spot] + " is now enrolled and will need to pay £" + cost/2 );
+                Console.WriteLine("Press enter to continue");
+            }
+            else if (newStudent.ToLower() == "tom")
+            {
+                Console.WriteLine("RED ALERT! He who must not be named.");
+                Console.WriteLine("Press enter for main menu");
+            }
+            else if (newStudent.ToLower() == "riddle")
+            {
+                Console.WriteLine("RED ALERT! He who must not be named.");
+                Console.WriteLine("Press enter for main menu");
+            }
+            else if (newStudent.ToLower() == "voldemort")
+            {
+                Console.WriteLine("RED ALERT! He who must not be named.");
+                Console.WriteLine("Press enter for main menu");
+            }
+            else
+            {
+
+                Students[spot] = newStudent;
+                StudentCost[spot] = cost;
+                Console.WriteLine(Students[spot] + " is now enrolled and will need to pay £" + cost);
+                Console.WriteLine("Press enter to continue");
+            }
         }
 
         static void UnenrollStudents()
@@ -69,7 +100,7 @@ namespace SummerSchool
             Console.WriteLine(" ");
             for (int i = 0; i < Students.Length; i++)
             {
-            Console.WriteLine(i + 1 + ". " + Students[i] + " £" + StudentCost[i]);
+                Console.WriteLine(i + 1 + ". " + Students[i] + " £" + StudentCost[i]);
             }
         }
 
