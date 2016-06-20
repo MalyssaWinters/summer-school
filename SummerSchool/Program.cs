@@ -39,6 +39,19 @@ namespace SummerSchool
             return -1;
         }
 
+        static int CountStudents()
+        {
+            int Count = 0;
+            for (int i = 0; i < Students.Length; i++)
+            {
+                if (Students[i] != null)
+                {
+                    Count++;
+                }
+            }
+            return Count;
+        }
+
         static void EnrollStudents()
         {
             double cost = 200;
@@ -46,18 +59,24 @@ namespace SummerSchool
             Console.WriteLine("Please enter student name");
             string newStudent = Console.ReadLine();
             int spot = GetNextAvailableSpot();
+
+
+            //Students with the last name Malfoy are not to be admitted.
+            //If someone tries to enroll a Malfoy, print out an error message and do not add the student to the list.
             if (newStudent.ToLower() == "malfoy")
             {
                 Console.WriteLine("This student may not be admitted");
                 Console.WriteLine("Press enter for main menu");
             }
+            //Students with the name Potter get 50% off rate.
             else if (newStudent.ToLower() == "potter")
             {
                 Students[spot] = newStudent;
                 StudentCost[spot] = cost;
-                Console.WriteLine(Students[spot] + " is now enrolled and will need to pay £" + cost/2 );
+                Console.WriteLine(Students[spot] + " is now enrolled and will need to pay £" + cost / 2);
                 Console.WriteLine("Press enter to continue");
             }
+            //Students with name tom, riddle or voldemort get 'Red Alert!' statement
             else if (newStudent.ToLower() == "tom")
             {
                 Console.WriteLine("RED ALERT! He who must not be named.");
@@ -72,6 +91,22 @@ namespace SummerSchool
             {
                 Console.WriteLine("RED ALERT! He who must not be named.");
                 Console.WriteLine("Press enter for main menu");
+            }
+            //Longbottom to be admitted free of charge if less than 10 students are enrolled.
+            else if (newStudent.ToLower() == "longbottom")
+            {
+                Students[spot] = newStudent;
+                StudentCost[spot] = cost;
+                if (CountStudents() < 10)
+                {
+                    Console.WriteLine(Students[spot] + " is now enrolled and will need to pay £" + 0 % cost);
+                    Console.WriteLine("Press enter to continue");
+                }
+                else
+                {
+                    Console.WriteLine(Students[spot] + " is now enrolled and will need to pay £" + cost);
+                    Console.WriteLine("Press enter to continue");
+                }
             }
             else
             {
