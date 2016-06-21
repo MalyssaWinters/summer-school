@@ -152,7 +152,7 @@ namespace SummerSchool
 
             //Students with a last name that starts with the same letter as their first name receive a 10% discount.
 
-           else if (firstName.First() == lastName.First())
+           else if (firstName.ToLower()[0] == lastName.ToLower()[0])
             {
                 Students[spot] = newStudent;
                 StudentCost[spot] = cost * .9;
