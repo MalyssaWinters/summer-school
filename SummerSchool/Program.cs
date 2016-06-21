@@ -20,19 +20,24 @@ namespace SummerSchool
             Console.WriteLine("Welcome to Hogwarts");
             Console.WriteLine(" ");
             Console.WriteLine("Please select an option below");
-            Console.WriteLine("1. Enroll Student");
-            Console.WriteLine("2. Unenroll Student");
+            if (CountStudents() < Students.Length)
+            {
+                Console.WriteLine("1. Enroll Student");
+            }
+            if (CountStudents() > 0 )
+            {
+                Console.WriteLine("2. Unenroll Student");
+            }
             Console.WriteLine("3. Print out the list of enrolled students");
             Console.WriteLine("4. Exit");
 
             //while loop with exception converts entry with letter to an int and bring menu back up
-            while(menuChoice < 1 || menuChoice > 4)
+            while (menuChoice < 1 || menuChoice > 4)
             {
                 try
                 {
                     string userChoice = Console.ReadLine();
                     menuChoice = Convert.ToInt32(userChoice);
-                   // menuChoice = Convert.ToInt32(Console.ReadLine());
                 }
                 catch (Exception e)
                 {
@@ -54,7 +59,7 @@ namespace SummerSchool
             return -1;
         }
 
-        static int CountStudents()
+               static int CountStudents()
         {
             int Count = 0;
             for (int i = 0; i < Students.Length; i++)
@@ -73,20 +78,22 @@ namespace SummerSchool
             Console.WriteLine(" ");
             Console.WriteLine("Please enter first and last name");
             string newStudent = Console.ReadLine();
-            var names = newStudent.Split(' ');
-            string firstName = names[0];
-            string lastName = names[1];
-            int spot = GetNextAvailableSpot();
 
+            var splitNames = newStudent.Split(' ');       
+            string firstName = splitNames[0];
+            string lastName = splitNames[splitNames.Length -1];
+
+            int spot = GetNextAvailableSpot();
+                                               
             //Students with the last name Malfoy are not to be admitted.
             //If someone tries to enroll a Malfoy, print out an error message and do not add the student to the list.
-            if (newStudent.ToLower() == "malfoy")
+            if (lastName.ToLower() == "malfoy")
             {
                 Console.WriteLine("This student may not be admitted");
                 Console.WriteLine("Press enter for main menu");
             }
             //Students with the name Potter get 50% off rate.
-            else if (newStudent.ToLower() == "potter")
+            else if (lastName.ToLower() == "potter")
             {
                 Students[spot] = newStudent;
                 StudentCost[spot] = cost / 2;
@@ -94,25 +101,37 @@ namespace SummerSchool
                 Console.WriteLine("Press enter to continue");
             }
             //Students with name tom, riddle or voldemort get 'Red Alert!' statement
-            else if (newStudent.ToLower() == "tom")
+            else if (firstName.ToLower() == "tom")
             {
+                Students[spot] = newStudent;
+                StudentCost[spot] = cost;
                 Console.WriteLine("RED ALERT! He who must not be named.");
+                Console.WriteLine(Students[spot] + " is now enrolled and will need to pay £" + cost);
                 Console.WriteLine("Press enter for main menu");
+                
             }
 
-            else if (newStudent.ToLower() == "riddle")
+            else if (lastName.ToLower() == "riddle")
             {
+                Students[spot] = newStudent;
+                StudentCost[spot] = cost;
                 Console.WriteLine("RED ALERT! He who must not be named.");
+                Console.WriteLine(Students[spot] + " is now enrolled and will need to pay £" + cost);
                 Console.WriteLine("Press enter for main menu");
+               
             }
-            else if (newStudent.ToLower() == "voldemort")
+            else if (firstName.ToLower() == "voldemort" || lastName.ToLower() == "voldemort")
             {
+                Students[spot] = newStudent;
+                StudentCost[spot] = cost;
                 Console.WriteLine("RED ALERT! He who must not be named.");
+                Console.WriteLine(Students[spot] + " is now enrolled and will need to pay £" + cost);
                 Console.WriteLine("Press enter for main menu");
+                
             }
 
             //Longbottom to be admitted free of charge if less than 10 students are enrolled.
-            else if (newStudent.ToLower() == "longbottom")
+            else if (lastName.ToLower() == "longbottom")
             {
 
                 if (CountStudents() < 10)
@@ -168,10 +187,11 @@ namespace SummerSchool
             Console.WriteLine(" ");
             for (int i = 0; i < Students.Length; i++)
             {
+                if (Students[i] !=null)
                 Console.WriteLine(i + 1 + ". " + Students[i] + " £" + StudentCost[i]);
             }
         }
-
+              
         static void Main(string[] args)
         {
             int menuChoice = 0;
