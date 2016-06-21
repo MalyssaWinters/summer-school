@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SummerSchool
 {
-    
+
     class Program
     {
         static double[] StudentCost = new double[15];
@@ -24,7 +24,7 @@ namespace SummerSchool
             {
                 Console.WriteLine("1. Enroll Student");
             }
-            if (CountStudents() > 0 )
+            if (CountStudents() > 0)
             {
                 Console.WriteLine("2. Unenroll Student");
             }
@@ -44,7 +44,7 @@ namespace SummerSchool
                     Console.WriteLine("Invalid entry. Choose options 1-4.");
                 }
             }
-           
+
             return menuChoice;
         }
         static int GetNextAvailableSpot()
@@ -59,7 +59,7 @@ namespace SummerSchool
             return -1;
         }
 
-               static int CountStudents()
+        static int CountStudents()
         {
             int Count = 0;
             for (int i = 0; i < Students.Length; i++)
@@ -79,12 +79,12 @@ namespace SummerSchool
             Console.WriteLine("Please enter first and last name");
             string newStudent = Console.ReadLine();
 
-            var splitNames = newStudent.Split(' ');       
+            var splitNames = newStudent.Split(' ');
             string firstName = splitNames[0];
-            string lastName = splitNames[splitNames.Length -1];
+            string lastName = splitNames[splitNames.Length - 1];
 
             int spot = GetNextAvailableSpot();
-                                               
+
             //Students with the last name Malfoy are not to be admitted.
             //If someone tries to enroll a Malfoy, print out an error message and do not add the student to the list.
             if (lastName.ToLower() == "malfoy")
@@ -101,33 +101,27 @@ namespace SummerSchool
                 Console.WriteLine("Press enter to continue");
             }
             //Students with name tom, riddle or voldemort get 'Red Alert!' statement
-            else if (firstName.ToLower() == "tom")
-            {
-                Students[spot] = newStudent;
-                StudentCost[spot] = cost;
-                Console.WriteLine("RED ALERT! He who must not be named.");
-                Console.WriteLine(Students[spot] + " is now enrolled and will need to pay £" + cost);
-                Console.WriteLine("Press enter for main menu");
-                
-            }
 
-            else if (lastName.ToLower() == "riddle")
+            else if (newStudent.ToLower().Contains("tom") ||
+                    newStudent.ToLower().Contains("riddle") ||
+                    newStudent.ToLower().Contains("voldemort"))
             {
-                Students[spot] = newStudent;
-                StudentCost[spot] = cost;
-                Console.WriteLine("RED ALERT! He who must not be named.");
-                Console.WriteLine(Students[spot] + " is now enrolled and will need to pay £" + cost);
-                Console.WriteLine("Press enter for main menu");
-               
-            }
-            else if (firstName.ToLower() == "voldemort" || lastName.ToLower() == "voldemort")
-            {
-                Students[spot] = newStudent;
-                StudentCost[spot] = cost;
-                Console.WriteLine("RED ALERT! He who must not be named.");
-                Console.WriteLine(Students[spot] + " is now enrolled and will need to pay £" + cost);
-                Console.WriteLine("Press enter for main menu");
+               Console.WriteLine("RED ALERT! He who must not be named.");
                 
+                if (firstName.ToLower()[0] == lastName.ToLower()[0])
+                {
+                    Students[spot] = newStudent;
+                    StudentCost[spot] = cost * .9;
+                    Console.WriteLine(Students[spot] + " is now enrolled and will need to pay £" + cost * .9);
+                    Console.WriteLine("Press enter to continue");
+                }
+                else
+                {
+                    Students[spot] = newStudent;
+                    StudentCost[spot] = cost;
+                    Console.WriteLine(Students[spot] + " is now enrolled and will need to pay £" + cost);
+                    Console.WriteLine("Press enter to continue");
+                }
             }
 
             //Longbottom to be admitted free of charge if less than 10 students are enrolled.
@@ -137,8 +131,8 @@ namespace SummerSchool
                 if (CountStudents() < 10)
                 {
                     Students[spot] = newStudent;
-                    StudentCost[spot] =  cost * 0;
-                    Console.WriteLine(Students[spot] + " is now enrolled and will need to pay £" +  cost * 0);
+                    StudentCost[spot] = cost * 0;
+                    Console.WriteLine(Students[spot] + " is now enrolled and will need to pay £" + cost * 0);
                     Console.WriteLine("Press enter to continue");
                 }
                 else
@@ -152,14 +146,14 @@ namespace SummerSchool
 
             //Students with a last name that starts with the same letter as their first name receive a 10% discount.
 
-           else if (firstName.ToLower()[0] == lastName.ToLower()[0])
+            else if (firstName.ToLower()[0] == lastName.ToLower()[0])
             {
                 Students[spot] = newStudent;
                 StudentCost[spot] = cost * .9;
                 Console.WriteLine(Students[spot] + " is now enrolled and will need to pay £" + cost * .9);
                 Console.WriteLine("Press enter to continue");
             }
-            
+
 
             else
             {
@@ -187,11 +181,11 @@ namespace SummerSchool
             Console.WriteLine(" ");
             for (int i = 0; i < Students.Length; i++)
             {
-                if (Students[i] !=null)
-                Console.WriteLine(i + 1 + ". " + Students[i] + " £" + StudentCost[i]);
+                if (Students[i] != null)
+                    Console.WriteLine(i + 1 + ". " + Students[i] + " £" + StudentCost[i]);
             }
         }
-              
+
         static void Main(string[] args)
         {
             int menuChoice = 0;
