@@ -73,9 +73,9 @@ namespace SummerSchool
             Console.WriteLine(" ");
             Console.WriteLine("Please enter first and last name");
             string newStudent = Console.ReadLine();
-           // var names = newStudent.Split(' ');
-           // string firstName = names[0];
-           //string lastName = names[1];
+            var names = newStudent.Split(' ');
+            string firstName = names[0];
+            string lastName = names[1];
             int spot = GetNextAvailableSpot();
 
             //Students with the last name Malfoy are not to be admitted.
@@ -133,14 +133,14 @@ namespace SummerSchool
 
             //Students with a last name that starts with the same letter as their first name receive a 10% discount.
 
-           /* else if (firstName.First = lastName.First)
+           else if (firstName.First() == lastName.First())
             {
                 Students[spot] = newStudent;
                 StudentCost[spot] = cost * .9;
                 Console.WriteLine(Students[spot] + " is now enrolled and will need to pay £" + cost * .9);
                 Console.WriteLine("Press enter to continue");
             }
-            */
+            
 
             else
             {
